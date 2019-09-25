@@ -7,9 +7,9 @@ pipeline {
     post {
         failure {
             emailext(
-          body: 'A Test EMail', 
+          body: env.BUILD_URL, 
           to: env.QA_EMAIL_ON_FAILURE, 
-          subject: 'Test'
+          subject: "Build ${env.BUILD_NUMBER} Failed"
           )
       }
     }
