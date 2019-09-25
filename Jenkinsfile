@@ -2,13 +2,13 @@ library ('base@JCLARK-51476')
 pipeline {
     agent any
     environment {
-        QA_EMAIL_ON_FAILURE = "mostafa.zahran@clark.de"
+        QA_EMAIL_ON_FAILURE = "mostafa.zahran@clark.de, guilherme.henrique@clark.de"
     }
     post {
         failure {
             emailext(
           body: 'A Test EMail', 
-          recipientProviders: env.QA_EMAIL_ON_FAILURE.split(","), 
+          to: env.QA_EMAIL_ON_FAILURE, 
           subject: 'Test'
           )
       }
