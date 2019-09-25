@@ -2,7 +2,7 @@ library ('base@JCLARK-51476')
 pipeline {
     agent any
     environment {
-        QA_EMAIL_ON_FAILURE = "mostafa.zahran@clark.de, guilherme.henrique@clark.de"
+        QA_EMAIL_ON_FAILURE = "mostafa.zahran@clark.de"
     }
     post {
         failure {

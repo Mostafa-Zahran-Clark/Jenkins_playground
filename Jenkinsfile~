@@ -8,7 +8,7 @@ pipeline {
         failure {
             emailext(
           body: 'A Test EMail', 
-          recipientProviders: env.QA_EMAIL_ON_FAILURE.split(","), 
+          to: env.QA_EMAIL_ON_FAILURE, 
           subject: 'Test'
           )
       }
