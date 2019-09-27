@@ -1,6 +1,11 @@
 library ('base@JCLARK-51476')
 pipeline {
-    agent any
+    agent {
+    kubernetes {
+      defaultContainer 'jnlp'
+      yamlFile '.jenkins/backend.yaml'
+    }
+  }
     environment {
         QA_EMAIL_ON_FAILURE = "mostafa.zahran@clark.de"
     }
@@ -14,9 +19,20 @@ pipeline {
       }
     }
     stages{
-     stage('Fail'){
+     stage('add ruby file'){
      steps{
-     sh 'exit 1' 
+     sh 'touch xx.rb'
+     sh "xx.rb < echo puts('sss')"
+     }
+     }
+     stage('execute it') {
+     steps{
+     sh 'ruby xx.rb'
+     }
+     }
+    stage('delete it') {
+     steps{
+      sh 'rm xx.rb'
      }
      }
     }
